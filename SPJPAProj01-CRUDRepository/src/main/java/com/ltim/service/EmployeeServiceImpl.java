@@ -1,6 +1,7 @@
 package com.ltim.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,27 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Override
 	public Iterable<Employee> fetchEmpsByIds(List<Integer> ids) {
 		return empRepo.findAllById(ids);
+	}
+
+	@Override
+	public Employee fetchEmpById(int id) {
+//		Optional<Employee> opt = empRepo.findById(id);
+//		
+//		if(opt.isPresent()) {
+//			Employee e = opt.get();
+//			return e;
+//		}else {
+//			throw new IllegalArgumentException("No record found with id :: "+id);
+//		}
+		
+//		return empRepo.findById(id).orElse(new Employee());
+		return empRepo.findById(id).orElseThrow(()-> new IllegalArgumentException("No record found"));
+	}
+
+	@Override
+	public Optional<Employee> searchEmpById(int id) {
+		Optional<Employee> opt = empRepo.findById(id);
+		 return opt.isPresent()? opt :  Optional.empty();
 	}
 
 }

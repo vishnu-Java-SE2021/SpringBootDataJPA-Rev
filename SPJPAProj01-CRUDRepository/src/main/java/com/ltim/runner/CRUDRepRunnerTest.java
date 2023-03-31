@@ -1,9 +1,7 @@
 //CRUDRepRunnerTest
 package com.ltim.runner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -73,10 +71,29 @@ public class CRUDRepRunnerTest implements CommandLineRunner {
 		
 //		System.out.println(empService.fetchEmpsByIds(List.of(6,7)));    //Java 9v List factory method  --> immutable type
 	
-		Iterable<Employee> empListWithIds = empService.fetchEmpsByIds(Arrays.asList(6,7));   //mutable type
-		empListWithIds.forEach(System.out::println);
+//		Iterable<Employee> empListWithIds = empService.fetchEmpsByIds(Arrays.asList(6,7));   //mutable type
+//		empListWithIds.forEach(System.out::println);
 		
 		
+		System.out.println("================findById(id)=================");
+		
+		/*
+		 * try {
+		 * System.out.println("Employee with id-8 :: "+empService.fetchEmpById(9)); }
+		 * catch(Exception e) { e.printStackTrace(); }
+		 */
+		
+		try {
+			Optional<Employee> opt = empService.searchEmpById(6);
+			
+			if(opt.isEmpty())
+				throw new IllegalArgumentException("No record found");
+			else
+				System.out.println(opt.get());
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}//run
 
 }//class
