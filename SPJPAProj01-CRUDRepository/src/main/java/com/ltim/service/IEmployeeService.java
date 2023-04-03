@@ -14,4 +14,11 @@ public interface IEmployeeService {
 	public Iterable<Employee> fetchEmpsByIds(List<Integer> ids);
 	public Employee fetchEmpById(int id);
 	public Optional<Employee> searchEmpById(int id);
+	public String registerAllEmps(Iterable<Employee> emps);
+	public String updateEmpDetails(Integer id, String dept, Double sal);
+	public String updateEmp(Employee emp);
+	public String removeEmp(Employee emp);
+	public String removeEmpById(Integer id);
+	public String removeEmpsByIds(Iterable<Integer> ids);
+	
 }

@@ -1,6 +1,7 @@
 //CRUDRepRunnerTest
 package com.ltim.runner;
 
+import java.util.List; 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.ltim.entity.Employee;
 import com.ltim.service.IEmployeeService;
 
-@Component
+//@Component
 public class CRUDRepRunnerTest implements CommandLineRunner {
 
 	@Autowired
@@ -94,6 +95,13 @@ public class CRUDRepRunnerTest implements CommandLineRunner {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("==================saveAll()================");
+		
+		System.out.println(empService.registerAllEmps(List.of(
+																							new Employee("Rolex","IT",30000.0),
+																							new Employee("Dilli","HR",40000.0),
+																							new Employee("Vikram","Finance",50000.0))));
 	}//run
 
 }//class
